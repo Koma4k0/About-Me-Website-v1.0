@@ -1,0 +1,203 @@
+<html lang="en">
+<script src="https://kit.fontawesome.com/3a843a5167.js" crossorigin="anonymous"></script>  
+
+
+
+<head>
+
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x=icon"/>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta charset="utf-8">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Koma4k Services" />
+    <meta property="og:title" content="Koma4k - About me" />
+    <meta
+      property="og:description"
+      content="Koma4k is a Professional Developer. Some languages I know but are not limited to, C/C++, CSS, HTML, Javascript, Python. Click the link to find out more." /><meta property="og:image" content="https://cdn.discordapp.com/attachments/1157523464689823764/1177866635328102400/rich-dude.0.0.jpg"
+    />
+    <meta content="#111111" data-react-helmet="true" name="theme-color"/>
+    <link rel="stylesheet" href="assets/style.css">
+
+    <script type="module" type="text/javascript" src="assets/main.js"></script>
+
+</head>
+
+
+
+<body>
+
+    <main>
+
+        <script>
+
+            function audioPlay() {
+
+                var audio = document.getElementById("audio");
+
+                audio.volume = 0.5;
+
+                audio.play()
+
+            }
+
+        </script>
+
+        <audio loop="" preload="auto" id="audio">
+
+            <source src="assets/moonlight.mp3" type="audio/mp3">
+
+        </audio>
+
+        <input type="checkbox" autocomplete="off" id="overlay-toggle">
+
+        <div class="overlay fullscreen">
+
+            <label for="overlay-toggle" onclick="audioPlay()">
+
+                <div class="welcome">Hey! I'm Koma4k. Welcome to my about me! Click anywhere.</div>
+
+            </label>
+
+        </div>
+        <shader-art autoplay dpr="1" role="img" tabindex="0">
+
+          <script type="buffer" name="position" data-size="2">
+            [-1, 1, -1,-1, 1,1, 1, 1, -1,-1, 1,-1]
+          </script>
+        
+          <script type="buffer" name="uv" data-size="2">
+            [ 0, 0,  0, 1, 1,0, 1, 0,  0, 1, 1, 1]
+          </script>
+        
+          <script type="vert">
+            #version 300 es
+            precision highp float;
+            in vec4 position;
+            in vec2 uv;
+            out vec2 vUv;
+            out vec4 vPosition;
+            void main() {
+              vUv = uv;
+              vPosition = position;
+              gl_Position = position;
+            }
+          </script>
+        
+          <script type="frag">
+            #version 300 es
+            precision highp float;
+            in vec2 vUv;
+            in vec4 vPosition;
+            out vec4 fragColor;
+            uniform vec2 resolution;
+            uniform float time;
+            uniform sampler2D charset;
+            uniform sampler2D message;
+        
+            #define AA 1e-3
+            #define PI 3.141592654
+            #define DEG PI / 180.
+        
+            vec2 rotate(vec2 p, float a) {
+              return vec2(p.x * cos(a) - p.y * sin(a),
+                          p.x * sin(a) + p.y * cos(a));
+            }
+        
+            float nooise(vec2 p) {
+              float n = .5 + .5 * (
+                sin(p.x * .5 + cos(p.y * 4. + .2 * cos(p.x * 2. + time * .1) + time * .2) + time * .3) * 
+                cos(p.y * .7 + sin(p.x * 3. + .3 * cos(p.y * 2. + time * .4) + time * .3) + time * .7)
+              );
+              return n;
+            }
+        
+            vec3 background() {
+              vec2 p0 = vPosition.xy;
+              float aspectRatio = resolution.x / resolution.y;
+              p0.x *= aspectRatio;
+              vec2 p = rotate(p0.xy * .8, time * .025);
+              float n = (nooise(p) + nooise(p * 2.) + nooise(p * 5.)) / 3.;
+              n = n * sin(n * n * 23. + time * .05);
+              n = clamp(smoothstep(.3, .35, n) - smoothstep(.4, .45, n), 0., 1.);
+              return vec3(0.5, 0.7, 1.0) * n;
+            }
+        
+            void main() {
+              float scanlines = .8 + .2 * smoothstep(0., 4., mod(gl_FragCoord.y, 4.));
+              fragColor = vec4(background(),1.);
+            }
+          </script>
+        </shader-art>
+
+        <section class="fullscreen text-content">
+
+            <h1>Koma4k | About Me</h1>
+            <div class="socials">
+              <a target="_blank">Professional Developer/Programmer</a>
+            </div>
+            <div class ="submain">
+              <a target="_blank">Discord Koma4k - User ID [1133030912397938820] - I will never dm from another account.</a>
+            </div>
+            <div>
+              <a target="_blank">Invite my public Discord Bots below!</a>
+            </div>
+            <div class="bottommain">
+              <a target="_blank">Current Project: Advanced Server Backup Bot</a>
+            </div>
+            <div class="socials">
+              <a href="https://discord.gg/santasmarket"
+              target="_blank"><i class="fa-brands fa-discord"></i> Santa's Market</a>
+              <a href="https://discord.gg/hanzofn"
+              target="_blank"><i class="fa-brands fa-discord"></i> Hanzo Chairs</a>
+            </div>
+            <div class="socials1">
+              <a href="https://discord.com/api/oauth2/authorize?client_id=1164257027254653041&permissions=8&scope=bot"
+              target="_blank"><i class="fa-solid fa-robot"></i> Application Bot</a>
+              <a href="https://discord.com/oauth2/authorize?client_id=1175252678805303367&permissions=277083450689&scope=bot%20applications.commands"
+              target="_blank"><i class="fa-solid fa-robot"></i> Music Bot</a>
+              <a href="https://discord.com/api/oauth2/authorize?client_id=1157519278153662464&scope=bot+applications.commands&permissions=1374891928950"
+              target="_blank"><i class="fa-solid fa-robot"></i> Multi-Purpose Bot</a>
+            </div>
+
+            <div class="socials2">
+              <a href="https://discordapp.com/users/1133030912397938820"
+              target="_blank"><i class="fa-brands fa-at"></i> Contact Me</a>
+              <a href="https://github.com/koma4k0"
+              target="_blank"><i class="fa-brands fa-github"></i> Github</a>
+              <a href="https://www.youtube.com/watch?v=5iTv3aHFNR8"
+              target="_blank"><i class="fa-solid fa-hand-fist"></i> Motivation</a>
+            </div>
+            <div class="languages">
+              <a target="_blank"><i class="fa-brands fa-dev fa-flip"></i> Programming Languages <i class="fa-brands fa-dev fa-flip"></i></a>
+            </div>
+            <div class="languages1">
+              <a target="_blank"><i class="fa-solid fa-laptop-code"></i> C/C++</a>
+              <a target="_blank"><i class="fa-brands fa-css3-alt"></i> CSS</a>
+              <a target="_blank"><i class="fa-brands fa-html5"></i> HTML</a>
+              
+              <a target="_blank"><i class="fa-brands fa-square-js"></i> Javascript</a>
+              <a target="_blank"><i class="fa-solid fa-database"></i> MySQL/MangoDB</a>
+              <a target="_blank"><i class="fa-brands fa-python"></i> Python</a>
+            </div>
+    </main>
+
+</body>
+
+
+
+</html>
